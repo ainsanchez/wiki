@@ -21,5 +21,6 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("encyclopedia.urls")),
-    path("wiki", views.index, name="index")
+    #path("wiki", views.index, name="index"),
+    path("wiki/<str:name>", views.title, name="title")
 ]

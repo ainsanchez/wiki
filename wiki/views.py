@@ -11,5 +11,6 @@ def index(request):
 
 def title(request, name):
     return render(request, "wiki/title.html", { 
-      "name": util.get_entry(name)
+      "name": util.get_entry(name),
+      "title": name
     })

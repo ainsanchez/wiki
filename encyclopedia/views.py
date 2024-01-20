@@ -12,3 +12,8 @@ def title(request, name):
       "name": util.get_entry(name),
       "title": name
     })
+
+def results(request):
+    inp_value = request.GET.get('text', 'This is a default value')
+    context = {'inp_value': inp_value}
+    return render( request, 'results.html', context)

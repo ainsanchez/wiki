@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from . import util
 
@@ -13,7 +13,6 @@ def title(request, name):
       "title": name
     })
 
-def results(request):
-    inp_value = request.GET.get('text', 'This is a default value')
-    context = {'inp_value': inp_value}
-    return render( request, 'results.html', context)
+def search(request):
+    term = request.POST.get('q', 'notfound')
+    return redirect('title', name=term)

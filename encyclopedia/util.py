@@ -35,3 +35,11 @@ def get_entry(title):
         return f.read().decode("utf-8")
     except FileNotFoundError:
         return None
+    
+def get_entry_subs(keyword):
+    entries_modified = []
+    entries = list_entries()
+    for entry in entries:
+        if keyword.lower() in entry.lower():
+            entries_modified.append(entry)
+    return entries_modified

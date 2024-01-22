@@ -15,4 +15,9 @@ def title(request, name):
 
 def search(request):
     term = request.POST.get('q', 'notfound')
-    return redirect('title', name=term)
+    if (util.get_entry(term) != None):
+        return redirect('title', name=term)
+    else:
+        return render(request, "encyclopedia/search_results.html", {
+            "new_entries": util.get_entry_subs(term)
+        })

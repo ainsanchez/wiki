@@ -21,3 +21,6 @@ def search(request):
         return render(request, "encyclopedia/search_results.html", {
             "new_entries": util.get_entry_subs(term)
         })
+    
+def create(request):
+    return render(request, "encyclopedia/create_entry.html")

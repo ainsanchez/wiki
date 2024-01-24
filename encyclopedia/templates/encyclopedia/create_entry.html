@@ -5,14 +5,9 @@
     </head>
     <body>
         <h1>Create a New Page</h1>
-        <form>
-            <div>
-                Enter a New Title:
-                <input type="text" name="page_title" placeholder="Enter a New Title">
-            </div>
-            <div>
-                <textarea id="textArea" name="textArea" rows="50" cols="100"></textarea>
-            </div>
+        <form action="{% url 'create_entry' %}" method="post">
+            {% csrf_token %}
+            {{ form }}
             <div>
                 <button>Save</button>
             </div>

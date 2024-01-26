@@ -1,0 +1,1 @@
+R is a programming language designed to create a vast range of statistical models with data.

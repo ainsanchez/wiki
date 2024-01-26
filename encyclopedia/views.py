@@ -1,3 +1,4 @@
+import markdown2
 from random import randint
 from django import forms
 from django.http import HttpResponse, HttpResponseRedirect
@@ -21,8 +22,9 @@ def index(request):
     })
 
 def title(request, name):
+    content = markdown2.markdown(util.get_entry(name))
     return render(request, "wiki/title.html", { 
-      "name": util.get_entry(name),
+      "name": content,
       "title": name
     })
 

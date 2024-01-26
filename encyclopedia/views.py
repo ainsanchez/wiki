@@ -1,3 +1,4 @@
+from random import randint
 from django import forms
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
@@ -75,5 +76,11 @@ def edit(request, title):
                 'title': title
             }
             return redirect('title', title)
+
+    
+def random(request):
+    randomValue = randint(1,len(util.list_entries()))
+    randomPage = util.list_entries()[randomValue]
+    return redirect('title', randomPage)
 
     

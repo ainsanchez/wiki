@@ -11,5 +11,6 @@
         {% else %}
         <h1>Error: Your request was not found</h1>
         {% endif %}
+        <button type="submit" onclick="location.href='{% url 'edit' title %}'">Edit</button>
     </body>
 </html>

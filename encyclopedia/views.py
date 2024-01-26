@@ -9,6 +9,9 @@ class NewTaskForm(forms.Form):
     title = forms.CharField(label="Title")
     text = forms.CharField(label="Content",
                            widget=forms.Textarea(attrs={"rows":"5"}))
+    
+class Edit(forms.Form):
+    textarea = forms.CharField(widget=forms.Textarea(), label='')
 
 
 def index(request):
@@ -49,5 +52,28 @@ def create(request):
     return render(request, "encyclopedia/create_entry.html", {
         "form": NewTaskForm()
     })    
+
+
+def edit(request, title):
+    if request.method == 'GET':
+        my_entry = util.get_entry(title)
+        context = {
+            'edit': Edit(initial={'textarea': my_entry}),
+            'title': title
+    }
+        return render (request, "encyclopedia/edit.html", context)
+    else:
+        form = Edit(request.POST)
+        if form.is_valid():
+            textarea = form.cleaned_data["textarea"]
+            util.save_entry(title, textarea)
+            my_entry = util.get_entry(title)
+            #page_converted = markdwn.convert(my_entry)
+            page_converted = my_entry
+            context = {
+                'my_entry': page_converted,
+                'title': title
+            }
+            return redirect('title', title)
 
     
